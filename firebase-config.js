@@ -1,14 +1,16 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_PROYECTO.firebaseapp.com",
-  projectId: "TU_PROYECTO",
-  storageBucket: "TU_PROYECTO.appspot.com",
-  messagingSenderId: "TU_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyC4csD4jOobDJx1UvmELjVn9tgRBUyNdoI",
+  authDomain: "golvision-bdd.firebaseapp.com",
+  databaseURL: "https://golvision-bdd-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "golvision-bdd",
+  storageBucket: "golvision-bdd.appspot.com",
+  messagingSenderId: "464679352252",
+  appId: "AQUÍ_TU_APP_ID" // 🔴 Copia el App ID correcto aquí
 };
 
-export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+export const db = getDatabase(app);
