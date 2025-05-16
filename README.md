@@ -1,6 +1,6 @@
-# ⚽ GOLVISION PAGE
+# ⚽ GOLVISION
 
-GOLVISION PAGE es una plataforma innovadora que utiliza modelos de predicción para estimar los resultados de partidos de fútbol. A través de análisis estadístico y algoritmos avanzados, ofrecemos pronósticos precisos basados en datos históricos y tendencias de rendimiento.
+GOLVISION es una plataforma innovadora que utiliza modelos de predicción para estimar los resultados de partidos de fútbol. A través de análisis estadístico y algoritmos avanzados, ofrecemos pronósticos precisos basados en datos históricos y tendencias de rendimiento.
 
 ## 🌍 Características principales
 
