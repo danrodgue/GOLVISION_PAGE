@@ -6,9 +6,10 @@ const firebaseConfig = {
   authDomain: "golvision-bdd.firebaseapp.com",
   databaseURL: "https://golvision-bdd-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "golvision-bdd",
-  storageBucket: "golvision-bdd.appspot.com",
+  storageBucket: "golvision-bdd.appspot.com", // 🔴 Corrige esto, `firebasestorage.app` no es correcto
   messagingSenderId: "464679352252",
-  appId: "AQUÍ_TU_APP_ID" // 🔴 Copia el App ID correcto aquí
+  appId: "1:464679352252:web:ef35d1bda566cc47d8ddb9",
+  measurementId: "G-QEB4K8XKK7"
 };
 
 // Inicializar Firebase
