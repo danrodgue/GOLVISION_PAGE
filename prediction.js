@@ -27,6 +27,9 @@ const teamsByLeague = {
 let trainedModel = null;
 let leagueSelect, team1Select, team2Select, form, resultDiv;
 
+// Variable global para almacenar el historial de errores
+let lossHistory = [];
+
 // Función para obtener datos de partidos de Firebase
 async function getMatchesFromFirebase(leagueName) {
     try {
@@ -88,6 +91,9 @@ function prepareTrainingData(matches) {
 
 // Función para entrenar el modelo
 async function trainModel(data) {
+    // Reiniciar el historial de errores
+    lossHistory = [];
+    
     // Preparar datos de entrada (X) y salida (Y)
     const xs = tf.tensor2d(data.map(d => [d.team1, d.team2, d.ht1, d.ht2]));
     const ys = tf.tensor2d(data.map(d => [d.ft1, d.ft2]));
@@ -109,6 +115,7 @@ async function trainModel(data) {
         callbacks: {
             onEpochEnd: (epoch, logs) => {
                 console.log(`Época ${epoch}: error = ${logs.loss}`);
+                lossHistory.push({epoch: epoch, loss: logs.loss});
             }
         }
     });
@@ -315,6 +322,77 @@ function displayPrediction(team1, team2, prediction, team1Stats, team2Stats) {
             </div>
         </div>
     `;
+    
+    // Añadir contenedor para la gráfica
+    resultDiv.innerHTML += `
+        <div class="row mt-4">
+            <div class="col-12">
+                <h4>Aprendizaje de la Red Neuronal</h4>
+                <div class="chart-container">
+                    <canvas id="learningChart"></canvas>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Crear la gráfica
+    createLearningChart();
+}
+
+// Función para crear la gráfica de aprendizaje
+function createLearningChart() {
+    const ctx = document.getElementById('learningChart').getContext('2d');
+    
+    // Extraer datos para la gráfica
+    const epochs = lossHistory.map(item => item.epoch);
+    const losses = lossHistory.map(item => item.loss);
+    
+    // Crear la gráfica
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: epochs,
+            datasets: [{
+                label: 'Error de Entrenamiento',
+                data: losses,
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    title: {
+                        display: true,
+                        text: 'Error (MSE)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Época'
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Progreso del Aprendizaje de la Red Neuronal'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `Error: ${context.parsed.y.toFixed(4)}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
 
 // Función para cargar equipos en los selectores
