@@ -256,12 +256,12 @@ function displayPrediction(team1, team2, prediction, team1Stats, team2Stats) {
             <div class="team-vs">
                 <div class="team">
                     <h3>${team1}</h3>
-                    <img src="./escudos/${team1Id}.png" alt="Escudo ${team1}" class="team-logo" onerror="this.onerror=null; console.log('Error al cargar escudo: ${team1Id}'); this.src='./img/default-team.png';">
+                    <img src="./escudos/${team1Id}.png" alt="Escudo ${team1}" class="team-logo" onerror="this.onerror=null; console.log('Error al cargar escudo: ${team1Id}'); this.src='./escudos/default-team.png';">
                 </div>
                 <div class="vs">VS</div>
                 <div class="team">
                     <h3>${team2}</h3>
-                    <img src="./escudos/${team2Id}.png" alt="Escudo ${team2}" class="team-logo" onerror="this.onerror=null; console.log('Error al cargar escudo: ${team2Id}'); this.src='./img/default-team.png';">
+                    <img src="./escudos/${team2Id}.png" alt="Escudo ${team2}" class="team-logo" onerror="this.onerror=null; console.log('Error al cargar escudo: ${team2Id}'); this.src='./escudos/default-team.png';">
                 </div>
             </div>
             <div class="score-prediction">
