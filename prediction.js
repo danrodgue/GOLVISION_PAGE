@@ -249,17 +249,19 @@ function displayPrediction(team1, team2, prediction, team1Stats, team2Stats) {
     const team1Id = parseInt(team1Select.value);
     const team2Id = parseInt(team2Select.value);
     
+    console.log("Cargando escudos para equipos:", team1Id, team2Id); // Para depuración
+    
     resultDiv.innerHTML = `
         <div class="match-card">
             <div class="team-vs">
                 <div class="team">
                     <h3>${team1}</h3>
-                    <img src="equipos/${team1Id}.png" alt="Logo ${team1}" class="team-logo" onerror="this.src='img/default-team.png'">
+                    <img src="./escudos/${team1Id}.png" alt="Escudo ${team1}" class="team-logo" onerror="this.onerror=null; console.log('Error al cargar escudo: ${team1Id}'); this.src='./img/default-team.png';">
                 </div>
                 <div class="vs">VS</div>
                 <div class="team">
                     <h3>${team2}</h3>
-                    <img src="equipos/${team2Id}.png" alt="Logo ${team2}" class="team-logo" onerror="this.src='img/default-team.png'">
+                    <img src="./escudos/${team2Id}.png" alt="Escudo ${team2}" class="team-logo" onerror="this.onerror=null; console.log('Error al cargar escudo: ${team2Id}'); this.src='./img/default-team.png';">
                 </div>
             </div>
             <div class="score-prediction">
