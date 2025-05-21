@@ -116,9 +116,20 @@ async function trainModel(data) {
     return model;
 }
 
+// Objeto para almacenar predicciones previas
+const predictionCache = {};
+
 // Función para predecir resultado
 async function predictMatch(model, team1Id, team2Id) {
     try {
+        // Crear clave única para este enfrentamiento
+        const matchKey = `${team1Id}-${team2Id}`;
+        
+        // Si ya tenemos una predicción para este enfrentamiento, devolverla
+        if (predictionCache[matchKey]) {
+            return predictionCache[matchKey];
+        }
+        
         // Crear tensor con datos del partido
         // Asumimos que no tenemos datos de medio tiempo (HT) para la predicción
         const input = tf.tensor2d([[team1Id, team2Id, 0, 0]]);
@@ -134,23 +145,34 @@ async function predictMatch(model, team1Id, team2Id) {
         
         // Añadir algo de aleatoriedad para obtener más variedad
         // Esto permite resultados como 2-1, 3-2, etc.
-        let goals1 = Math.max(0, Math.round(baseGoals1 + (Math.random() * 2 - 0.5)));
-        let goals2 = Math.max(0, Math.round(baseGoals2 + (Math.random() * 2 - 0.5)));
+        // Usamos una semilla basada en los IDs de los equipos para que sea consistente
+        const seed = team1Id * 100 + team2Id;
+        const pseudoRandom1 = Math.sin(seed) * 10000 % 1;
+        const pseudoRandom2 = Math.cos(seed) * 10000 % 1;
+        
+        let goals1 = Math.max(0, Math.round(baseGoals1 + (pseudoRandom1 * 2 - 0.5)));
+        let goals2 = Math.max(0, Math.round(baseGoals2 + (pseudoRandom2 * 2 - 0.5)));
         
         // Para equipos con gran diferencia de nivel, aumentar la probabilidad de más goles
         if (Math.abs(team1Id - team2Id) > 10) {
             const favoriteTeam = team1Id < team2Id ? 1 : 2;
-            if (favoriteTeam === 1 && Math.random() > 0.6) {
-                goals1 += 1;
-            } else if (favoriteTeam === 2 && Math.random() > 0.6) {
-                goals2 += 1;
+            if ((seed % 10) > 6) { // Usar el seed para determinar si añadir goles
+                if (favoriteTeam === 1) {
+                    goals1 += 1;
+                } else {
+                    goals2 += 1;
+                }
             }
         }
         
-        return {
+        // Guardar la predicción en caché
+        const result = {
             ft1: goals1,
             ft2: goals2
         };
+        predictionCache[matchKey] = result;
+        
+        return result;
     } catch (error) {
         console.error("Error en la predicción:", error);
         return { ft1: 1, ft2: 1 }; // Valor predeterminado en caso de error
@@ -159,8 +181,19 @@ async function predictMatch(model, team1Id, team2Id) {
 
 // Función para calcular estadísticas de los equipos
 function calculateTeamStats(matches, teamId) {
+    // Mapear IDs de equipos de otras ligas a IDs de La Liga cuando sea necesario
+    let mappedTeamId = teamId;
+    
+    // Si el ID es de Premier League o Serie A, mapear a un ID equivalente de La Liga
+    if (teamId > 20 && teamId <= 60) {
+        // Calcular un ID equivalente en La Liga (1-20)
+        // Por ejemplo, para Premier League (21-40), mapear a (1-20)
+        // Para Serie A (41-60), también mapear a (1-20)
+        mappedTeamId = ((teamId - 1) % 20) + 1;
+    }
+    
     const teamMatches = matches.filter(m => 
-        parseInt(m.team1) === teamId || parseInt(m.team2) === teamId
+        parseInt(m.team1) === mappedTeamId || parseInt(m.team2) === mappedTeamId
     );
     
     if (teamMatches.length === 0) {
@@ -179,7 +212,7 @@ function calculateTeamStats(matches, teamId) {
     teamMatches.forEach(match => {
         if (!match.score || !match.score.ft) return;
         
-        const isHome = parseInt(match.team1) === teamId;
+        const isHome = parseInt(match.team1) === mappedTeamId;
         const homeGoals = match.score.ft[0];
         const awayGoals = match.score.ft[1];
         
