@@ -119,8 +119,8 @@
 
 /* Estilos para los logos de equipos */
 .team-logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     margin-top: 10px;
     margin-bottom: 10px;
