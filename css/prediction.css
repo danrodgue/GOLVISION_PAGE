@@ -133,18 +133,42 @@
     text-align: center;
 }
 
-/* Estilos para la gráfica de aprendizaje */
+/* Estilos para las gráficas */
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.chart-wrapper {
+    width: 100%;
+}
+
 .chart-container {
     background-color: #f9f9f9;
     border-radius: 8px;
-    padding: 15px;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    height: 300px;
+    height: 350px;
 }
 
-#learningChart {
+.chart-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #333;
+}
+
+#learningChart, #resultsChart {
     max-height: 100%;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .charts-container {
+        flex-direction: column;
+    }
 }

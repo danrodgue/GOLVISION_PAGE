@@ -323,20 +323,28 @@ function displayPrediction(team1, team2, prediction, team1Stats, team2Stats) {
         </div>
     `;
     
-    // Añadir contenedor para la gráfica
+    // Añadir contenedor para las gráficas
     resultDiv.innerHTML += `
-        <div class="row mt-4">
-            <div class="col-12">
-                <h4>Aprendizaje de la Red Neuronal</h4>
+        <h4 class="mt-4">Análisis del Modelo</h4>
+        <div class="charts-container">
+            <div class="chart-wrapper">
+                <div class="chart-title">Aprendizaje de la Red Neuronal</div>
                 <div class="chart-container">
                     <canvas id="learningChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <div class="chart-title">Comparativa de Resultados</div>
+                <div class="chart-container">
+                    <canvas id="resultsChart"></canvas>
                 </div>
             </div>
         </div>
     `;
     
-    // Crear la gráfica
+    // Crear las gráficas
     createLearningChart();
+    createResultsChart(team1, team2, team1Stats, team2Stats);
 }
 
 // Función para crear la gráfica de aprendizaje
@@ -381,12 +389,86 @@ function createLearningChart() {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Progreso del Aprendizaje de la Red Neuronal'
+                    text: 'Progreso del Aprendizaje'
                 },
                 tooltip: {
                     callbacks: {
                         label: function(context) {
                             return `Error: ${context.parsed.y.toFixed(4)}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Nueva función para crear la gráfica de resultados
+function createResultsChart(team1, team2, team1Stats, team2Stats) {
+    const ctx = document.getElementById('resultsChart').getContext('2d');
+    
+    // Datos para la gráfica
+    const labels = ['Jugados', 'Ganados', 'Empatados', 'Perdidos', 'Goles a favor', 'Goles en contra'];
+    const team1Data = [
+        team1Stats.played, 
+        team1Stats.won, 
+        team1Stats.drawn, 
+        team1Stats.lost,
+        team1Stats.goalsFor,
+        team1Stats.goalsAgainst
+    ];
+    const team2Data = [
+        team2Stats.played, 
+        team2Stats.won, 
+        team2Stats.drawn, 
+        team2Stats.lost,
+        team2Stats.goalsFor,
+        team2Stats.goalsAgainst
+    ];
+    
+    // Crear la gráfica
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: team1,
+                    data: team1Data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 1
+                },
+                {
+                    label: team2,
+                    data: team2Data,
+                    backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Cantidad'
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Comparativa de Equipos'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.dataset.label || '';
+                            return `${label}: ${context.parsed.y}`;
                         }
                     }
                 }
