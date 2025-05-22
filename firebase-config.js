@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC4csD4jOobDJx1UvmELjVn9tgRBUyNdoI",
@@ -12,9 +13,10 @@ const firebaseConfig = {
   measurementId: "G-QEB4K8XKK7"
 };
 
-// Inicializar Firebaseeeeee
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+export const auth = getAuth(app);
 
 // 🔴 Verificar que el archivo se está cargando correctamente
 console.log("Firebase configurado correctamente.");
