@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>GolVision - Prediction</title>
+	<title>GolVision - Selector</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="GolVision - Sports Results and Predictions">
 	<meta name="keywords" content="football, predictions, results, sports">
@@ -46,13 +46,12 @@
 
 		<nav class="nav-menu">
 			<ul>
-				<li class="active"><a href="index.html">Home</a></li> <!-- PAGINA INICIAL // Cambiado de home a index -->
+				<li class="active"><a href="index.html">Home</a></li>
 				<li><a href="prediction.html">Predictions</a></li>
 				<li><a href="scoreboards.html">ScoreBoards</a></li>
 				<li><a href="about.html">About us</a></li>
 				<li><a href="login.html">Log in</a></li>
-				<!-- <li><a href="service.html">Services</a></li> -->
-				<!-- <li><a href="portfolio.html">Portfolio</a></li> -->		
+	
 			</ul>
 		</nav>
 	</header>
@@ -61,64 +60,51 @@
 	<!-- Page header section start -->
 	<section class="page-header-section set-bg" data-setbg="img/header-bg.jpg">
 		<div class="container">
-			<h1 class="header-title">Predictions<span>.</span></h1>
+			<h1 class="header-title">Select your future<span>.</span></h1>
 		</div>
 	</section>
 	<!-- Page header section end -->
 
 
-	<!-- Prediction section start -->
+	<!-- selector section start -->
 	
-	<section class="prediction-section spad">
+    <section class="intro-section pt100 pb50">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 offset-lg-2">
-					<div class="section-title text-center">
-						<h2>Results prediction</h2>
-						<p>Select two teams to get a prediction based on our artificial intelligence model</p>
-					</div>
-					<div class="prediction-form">
-						<form id="match-prediction-form">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="league">Liga:</label>
-										<select id="league" class="form-control">
-											<option value="Spain Primera División 2024/25">La Liga</option>
-											<option value="Premier League 2024/25">Premier League</option>
-											<option value="Serie A 2024/25">Serie A</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="team1">Equipo Local:</label>
-										<select id="team1" class="form-control"></select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="team2">Equipo Visitante:</label>
-										<select id="team2" class="form-control"></select>
-									</div>
-								</div>
-							</div>
-							<div class="text-center mt-4">
-								<button type="submit" class="site-btn">Predecir Resultado</button>
-							</div>
-						</form>
-					</div>
-					<div id="prediction-result" class="prediction-result mt-5">
-						<!-- Aquí se mostrará el resultado de la predicción -->
-					</div>
+				<div class="col-lg-7 intro-text mb-5 mb-lg-0">
+					<h2 class="sp-title">See the <span>ScoreBoards</span> of your favorite league or team. </h2>
+					<p>
+						If you want to se the results of your favorite league or team, you can select the league or team you want to see. Click on the button below and know the results to stay up to date.
+					</p>
+					<a href="scoreboards.html" class="site-btn sb-dark">ScoreBoards</a>
+				</div>
+				<div class="col-lg-5 pt-4">
+					<img src="img/intro.png" alt="">
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Prediction section end -->
+    <section class="intro-section pt100 pb50">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-7 intro-text mb-5 mb-lg-0">
+					<h2 class="sp-title">Get ahead of the rest by using <span>Predictions</span> based on statistics.</h2>
+					<p>
+						For the best predictions, you can select the league or team you want to see. Click on the button below and know the results to stay up to date.
+                        <br><br> 
+                        Attention! The predictions are based on statistics and are not 100% accurate. Use them at your own risk. The human factor, is always unpredictable. Remember, the game is played by humans, not by machines.
+					</p>
+					<a href="prediction.html" class="site-btn sb-dark">Predictions</a>
+				</div>
+				<div class="col-lg-5 pt-4">
+					<img src="img/intro.png" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- selector section end -->
 
 
 

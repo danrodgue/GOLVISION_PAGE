@@ -46,13 +46,11 @@
 
 		<nav class="nav-menu">
 			<ul>
-				<li class="active"><a href="index.html">Home</a></li> <!-- PAGINA INICIAL // Cambiado de home a index -->
+				<li><a href="index.html">Home</a></li> 
 				<li><a href="prediction.html">Predictions</a></li>
-				<li><a href="scoreboards.html">ScoreBoards</a></li>
-				<li><a href="about.html">About us</a></li>
-				<li><a href="login.html">Log in</a></li>
-				<!-- <li><a href="service.html">Services</a></li> -->
-				<!-- <li><a href="portfolio.html">Portfolio</a></li> -->		
+				<li class="active"><a href="scoreboards.html">ScoreBoards</a></li>
+                <li><a href="about.html">About us</a></li>
+				<li><a href="login.html">Log in</a></li>	
 			</ul>
 		</nav>
 	</header>
@@ -67,58 +65,31 @@
 	<!-- Page header section end -->
 
 
-	<!-- Prediction section start -->
+	<!-- Tabla de resultados section start -->
 	
-	<section class="prediction-section spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2">
-					<div class="section-title text-center">
-						<h2>Results prediction</h2>
-						<p>Select two teams to get a prediction based on our artificial intelligence model</p>
-					</div>
-					<div class="prediction-form">
-						<form id="match-prediction-form">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="league">Liga:</label>
-										<select id="league" class="form-control">
-											<option value="Spain Primera División 2024/25">La Liga</option>
-											<option value="Premier League 2024/25">Premier League</option>
-											<option value="Serie A 2024/25">Serie A</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="team1">Equipo Local:</label>
-										<select id="team1" class="form-control"></select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="team2">Equipo Visitante:</label>
-										<select id="team2" class="form-control"></select>
-									</div>
-								</div>
-							</div>
-							<div class="text-center mt-4">
-								<button type="submit" class="site-btn">Predecir Resultado</button>
-							</div>
-						</form>
-					</div>
-					<div id="prediction-result" class="prediction-result mt-5">
-						<!-- Aquí se mostrará el resultado de la predicción -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section class="scoreboards-section">
+    <div class="container">
+        <h2 class="text-center mb-4">Resultados de Partidos</h2>
+        <div class="table-responsive">
+            <table class="table table-striped" id="matches-table">
+                <thead>
+                    <tr>
+                        <th>Equipo 1</th>
+                        <th></th>
+                        <th>Resultado</th>
+                        <th></th>
+                        <th>Equipo 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se insertarán los partidos -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
-	<!-- Prediction section end -->
+	<!-- Tabla de resultados section end -->
 
 
 
