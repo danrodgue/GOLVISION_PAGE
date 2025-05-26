@@ -1,12 +1,19 @@
+// Cambiar esto:
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 import { app } from './firebase-config.js';
+
+// Por esto:
+import { ref, get } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+import { db } from './firebase-config.js';
 
 // Objeto para almacenar los partidos por ID
 let matchesById = {};
 
 // Función para cargar los partidos desde Firebase
 async function loadMatches() {
-    const db = getDatabase(app);
+    // Eliminar esta línea:
+    // const db = getDatabase(app);
+    
     const matchesRef = ref(db, 'ligas');
     const tableBody = document.querySelector('#matches-table tbody');
     const leagueFilter = document.getElementById('league-filter').value;

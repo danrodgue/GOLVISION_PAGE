@@ -1,4 +1,9 @@
+// Cambiar esto:
 import { auth, observarEstadoAuth, cerrarSesion } from './auth.js';
+
+// Por esto:
+import { observarEstadoAuth, cerrarSesion } from './auth.js';
+import { auth } from './firebase-config.js';
 
 // Función para actualizar la navegación según el estado de autenticación
 export const actualizarNavegacion = () => {
