@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>GolVision - Prediction</title>
+	<title>GolVision - Scoreboards</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="GolVision - Sports Results and Predictions">
 	<meta name="keywords" content="football, predictions, results, sports">
@@ -24,7 +24,6 @@
 	<link rel="stylesheet" href="css/prediction.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script type="module" src="./auth-nav.js"></script>
-
 
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -49,13 +48,11 @@
 
 		<nav class="nav-menu">
 			<ul>
-				<li><a href="index.html">Home</a></li> <!-- PAGINA INICIAL // Cambiado de home a index -->
-				<li class="active"><a href="prediction.html">Predictions</a></li>
-				<li><a href="scoreboards.html">ScoreBoards</a></li>
-				<li><a href="about.html">About us</a></li>
-				<li><a href="login.html">Log in</a></li>
-				<!-- <li><a href="service.html">Services</a></li> -->
-				<!-- <li><a href="portfolio.html">Portfolio</a></li> -->		
+				<li><a href="index.html">Home</a></li> 
+				<li><a href="prediction.html">Predictions</a></li>
+				<li class="active"><a href="scoreboards.html">ScoreBoards</a></li>
+                <li><a href="about.html">About us</a></li>
+				<li><a href="login.html">Log in</a></li>	
 			</ul>
 		</nav>
 	</header>
@@ -64,72 +61,74 @@
 	<!-- Page header section start -->
 	<section class="page-header-section set-bg" data-setbg="img/header-bg.jpg">
 		<div class="container">
-			<h1 class="header-title">Predictions<span>.</span></h1>
+			<h1 class="header-title">Scoreboards<span>.</span></h1>
 		</div>
 	</section>
 	<!-- Page header section end -->
 
 
-	<!-- Prediction section start -->
+	<!-- Tabla de resultados section start -->
 	
-	<section class="prediction-section spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2">
-					<div class="section-title text-center">
-						<h2>Results prediction</h2>
-						<p>Select two teams to get a prediction based on our artificial intelligence model</p>
-					</div>
-					<div class="prediction-form">
-						<form id="match-prediction-form">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="league">Liga:</label>
-										<select id="league" class="form-control">
-											<option value="Spain Primera División 2024/25">La Liga</option>
-											<option value="Premier League 2024/25">Premier League</option>
-											<option value="Serie A 2024/25">Serie A</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="team1">Equipo Local:</label>
-										<select id="team1" class="form-control"></select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="team2">Equipo Visitante:</label>
-										<select id="team2" class="form-control"></select>
-									</div>
-								</div>
-							</div>
-							<div class="text-center mt-4">
-								<button type="submit" class="site-btn">Predecir Resultado</button>
-							</div>
-						</form>
-					</div>
-					<div id="prediction-result" class="prediction-result mt-5">
-						<!-- Aquí se mostrará el resultado de la predicción -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Prediction section end -->
+    <section class="scoreboards-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="section-title text-center">
+                        <h2>Resultados de Partidos</h2>
+                        <p>Consulta los resultados de los partidos de las diferentes ligas</p>
+                    </div>
+                    
+                    <div class="filter-container mb-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="league-filter">Filtrar por Liga:</label>
+									<select id="league-filter" class="form-control"s>
+                                        <option value="all">Todas las Ligas</option>
+                                        <option value="Spain Primera División 2024/25">La Liga</option>
+                                        <option value="Premier League 2024/25">Premier League</option>
+                                        <option value="Serie A 2024/25">Serie A</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="matches-container">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="matches-table">
+                                <thead>
+                                    <tr>
+                                        <th>Liga</th>
+                                        <th>Equipo Local</th>
+                                        <th>Resultado</th>
+                                        <th>Equipo Visitante</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Aquí se insertarán los partidos -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+					
 
 
+                    <div id="match-details" class="match-details mt-5" style="display: none;">
+                        <!-- Aquí se mostrarán los detalles del partido seleccionado -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-
+	<!-- Tabla de resultados section end -->
 
 	<!-- Footer section start -->
-		<footer class="footer-section">
+	<footer class="footer-section">
 		<div class="footer-social">
 			<div class="social-links">
 					<a href="https://github.com/danrodgue/GOLVISION_PAGE"><i class="fa fa-github"></i></a>
@@ -193,15 +192,15 @@
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/isotope.pkgd.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.slicknav.js"></script>
-	<script src="js/owl.carousel.min.js"></script>	
+	<script src="js/jquery.owl-filter.js"></script>
 	<script src="js/magnific-popup.min.js"></script>
 	<script src="js/circle-progress.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script type="module" src="./firebase-config.js"></script>
-	<script type="module" src="./prediction.js"></script>
+	<script type="module" src="./scoreboard.js"></script>
 	<script type="module" src="./auth-nav.js"></script>
 </body>
 </html>
