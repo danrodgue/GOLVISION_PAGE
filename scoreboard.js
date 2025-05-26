@@ -4,7 +4,7 @@ import { app } from './firebase-config.js';
 
 // Por esto:
 import { ref, get } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
-import { db } from './firebase-config.js';
+import { db, app } from './firebase-config.js';
 
 // Mapeo de IDs de equipos a nombres
 const teamNames = {
@@ -146,7 +146,7 @@ async function loadMatches() {
                                 </td>
                                 <td>${matchDate}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary view-details" data-match-id="${matchId}">Ver detalles</button>
+                                    <button class="btn btn-sm btn-success view-details" data-match-id="${matchId}" style="background-color: #baff00; border-color: #baff00; color: #222222;">Ver detalles</button>
                                 </td>
                             </tr>
                         `;
