@@ -77,8 +77,9 @@ const teamNames = {
 
 // Función para obtener el nombre del equipo a partir de su ID
 function getTeamName(teamId) {
-    return teamNames[teamId] || teamId; // Si no existe el mapeo, devuelve el ID como fallback
+    return teamNames[String(teamId)] || teamId;
 }
+
 
 // Objeto para almacenar los partidos por ID
 let matchesById = {};
