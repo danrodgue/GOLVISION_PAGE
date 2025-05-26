@@ -6,6 +6,80 @@ import { app } from './firebase-config.js';
 import { ref, get } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 import { db } from './firebase-config.js';
 
+// Mapeo de IDs de equipos a nombres
+const teamNames = {
+    // LA LIGA
+    "1": "Barcelona",
+    "2": "Madrid",
+    "3": "Valencia",
+    "4": "Atlético de Madrid",
+    "5": "Athletic de Bilbao",
+    "6": "Villareal",
+    "7": "Getafe",
+    "8": "Betis",
+    "9": "Sevilla",
+    "10": "Celta",
+    "11": "Rayo vallecano",
+    "12": "Mallorca",
+    "13": "Las Palmas",
+    "14": "Osasuna",
+    "15": "Real Sociedad",
+    "16": "Gerona",
+    "17": "Espanyol",
+    "18": "Alavés",
+    "19": "Leganés",
+    "20": "Valladolid",
+    
+    // PREMIER LEAGUE
+    "21": "Manchester United FC",
+    "22": "Fulham FC",
+    "23": "Ipswich Town FC",
+    "24": "Liverpool FC",
+    "25": "Arsenal FC",
+    "26": "Wolverhampton Wanderers FC",
+    "27": "Everton FC",
+    "28": "Brighton & Hove Albion FC",
+    "29": "Newcastle United FC",
+    "30": "Southampton FC",
+    "31": "Nottingham Forest FC",
+    "32": "AFC Bournemouth",
+    "33": "West Ham United FC",
+    "34": "Aston Villa FC",
+    "35": "Brentford FC",
+    "36": "Crystal Palace FC",
+    "37": "Chelsea FC",
+    "38": "Manchester City FC",
+    "39": "Leicester City FC",
+    "40": "Tottenham Hotspur FC",
+    
+    // SERIE A
+    "41": "Genoa CFC",
+    "42": "FC Internazionale Milano",
+    "43": "Parma Calcio 1913",
+    "44": "ACF Fiorentina",
+    "45": "Empoli FC",
+    "46": "AC Monza",
+    "47": "AC Milan",
+    "48": "Torino FC",
+    "49": "Bologna FC 1909",
+    "50": "Udinese Calcio",
+    "51": "Hellas Verona FC",
+    "52": "SSC Napoli",
+    "53": "Cagliari Calcio",
+    "54": "AS Roma",
+    "55": "SS Lazio",
+    "56": "Venezia FC",
+    "57": "US Lecce",
+    "58": "Atalanta BC",
+    "59": "Juventus FC",
+    "60": "Como 1907"
+};
+
+// Función para obtener el nombre del equipo a partir de su ID
+function getTeamName(teamId) {
+    return teamNames[teamId] || teamId; // Si no existe el mapeo, devuelve el ID como fallback
+}
+
 // Objeto para almacenar los partidos por ID
 let matchesById = {};
 
@@ -47,14 +121,18 @@ async function loadMatches() {
                         // Formatear la fecha si existe
                         const matchDate = match.date ? new Date(match.date).toLocaleDateString() : 'N/A';
                         
+                        // Obtener los nombres de los equipos
+                        const team1Name = getTeamName(match.team1);
+                        const team2Name = getTeamName(match.team2);
+                        
                         // Crear la fila de la tabla
                         html += `
                             <tr data-match-id="${matchId}" class="match-row">
                                 <td>${liga.name}</td>
                                 <td class="text-right">
                                     <div class="d-flex align-items-center justify-content-end">
-                                        <span class="mr-2">${match.team1}</span>
-                                        <img src="./escudos/${match.team1}.png" alt="${match.team1}" class="team-logo-small" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
+                                        <span class="mr-2">${team1Name}</span>
+                                        <img src="./escudos/${match.team1}.png" alt="${team1Name}" class="team-logo-small" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
                                     </div>
                                 </td>
                                 <td class="text-center">
@@ -62,8 +140,8 @@ async function loadMatches() {
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="./escudos/${match.team2}.png" alt="${match.team2}" class="team-logo-small" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
-                                        <span class="ml-2">${match.team2}</span>
+                                        <img src="./escudos/${match.team2}.png" alt="${team2Name}" class="team-logo-small" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
+                                        <span class="ml-2">${team2Name}</span>
                                     </div>
                                 </td>
                                 <td>${matchDate}</td>
@@ -118,6 +196,10 @@ function showMatchDetails(matchId) {
         return;
     }
     
+    // Obtener los nombres de los equipos
+    const team1Name = getTeamName(match.team1);
+    const team2Name = getTeamName(match.team2);
+    
     // Calcular estadísticas adicionales
     const homeGoals = match.score && match.score.ft ? match.score.ft[0] : 0;
     const awayGoals = match.score && match.score.ft ? match.score.ft[1] : 0;
@@ -133,16 +215,16 @@ function showMatchDetails(matchId) {
             <h3 class="text-center mb-4">${match.liga}</h3>
             <div class="team-vs">
                 <div class="team">
-                    <h3>${match.team1}</h3>
-                    <img src="./escudos/${match.team1}.png" alt="Escudo ${match.team1}" class="team-logo" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
+                    <h3>${team1Name}</h3>
+                    <img src="./escudos/${match.team1}.png" alt="Escudo ${team1Name}" class="team-logo" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
                 </div>
                 <div class="vs">
                     <div class="score-prediction">${homeGoals} - ${awayGoals}</div>
                     <p class="text-muted">Resultado Final</p>
                 </div>
                 <div class="team">
-                    <h3>${match.team2}</h3>
-                    <img src="./escudos/${match.team2}.png" alt="Escudo ${match.team2}" class="team-logo" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
+                    <h3>${team2Name}</h3>
+                    <img src="./escudos/${match.team2}.png" alt="Escudo ${team2Name}" class="team-logo" onerror="this.onerror=null; this.src='./escudos/default-team.png';">
                 </div>
             </div>
             
@@ -192,20 +274,24 @@ function createGoalsChart(match) {
     const secondHalfHomeGoals = homeGoals - homeHalfGoals;
     const secondHalfAwayGoals = awayGoals - awayHalfGoals;
     
+    // Obtener los nombres de los equipos
+    const team1Name = getTeamName(match.team1);
+    const team2Name = getTeamName(match.team2);
+    
     new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Primer Tiempo', 'Segundo Tiempo', 'Total'],
             datasets: [
                 {
-                    label: match.team1,
+                    label: team1Name,
                     data: [homeHalfGoals, secondHalfHomeGoals, homeGoals],
                     backgroundColor: 'rgba(54, 162, 235, 0.7)',
                     borderColor: 'rgb(54, 162, 235)',
                     borderWidth: 1
                 },
                 {
-                    label: match.team2,
+                    label: team2Name,
                     data: [awayHalfGoals, secondHalfAwayGoals, awayGoals],
                     backgroundColor: 'rgba(255, 99, 132, 0.7)',
                     borderColor: 'rgb(255, 99, 132)',
