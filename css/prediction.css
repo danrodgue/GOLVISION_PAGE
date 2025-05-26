@@ -172,3 +172,66 @@
         flex-direction: column;
     }
 }
+
+/* Estilos para la página de scoreboards */
+.scoreboards-section {
+    background-color: #f7f7f7;
+}
+
+.team-logo-small {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.match-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.match-row:hover {
+    background-color: #f0f0f0;
+}
+
+.match-details {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.filter-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.matches-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para la visualización de equipos en la tabla */
+.d-flex {
+    display: flex !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.justify-content-end {
+    justify-content: flex-end !important;
+}
+
+.ml-2 {
+    margin-left: 0.5rem !important;
+}
+
+.mr-2 {
+    margin-right: 0.5rem !important;
+}
