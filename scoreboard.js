@@ -1,7 +1,3 @@
-// Cambiar esto:
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
-import { app } from './firebase-config.js';
-
 // Por esto:
 import { ref, get } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 import { db, app } from './firebase-config.js';
