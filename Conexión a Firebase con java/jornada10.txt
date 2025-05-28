@@ -1,0 +1,60 @@
+Fecha: 2024-11-02
+Jornada: 10
+Newcastle United FC vs Arsenal FC
+Hora: 12:30
+Resultado: 1 - 0
+-------------
+Fecha: 2024-11-02
+Jornada: 10
+AFC Bournemouth vs Manchester City FC
+Hora: 15:00
+Resultado: 2 - 1
+-------------
+Fecha: 2024-11-02
+Jornada: 10
+Ipswich Town FC vs Leicester City FC
+Hora: 15:00
+Resultado: 1 - 1
+-------------
+Fecha: 2024-11-02
+Jornada: 10
+Liverpool FC vs Brighton & Hove Albion FC
+Hora: 15:00
+Resultado: 2 - 1
+-------------
+Fecha: 2024-11-02
+Jornada: 10
+Nottingham Forest FC vs West Ham United FC
+Hora: 15:00
+Resultado: 3 - 0
+-------------
+Fecha: 2024-11-02
+Jornada: 10
+Southampton FC vs Everton FC
+Hora: 15:00
+Resultado: 1 - 0
+-------------
+Fecha: 2024-11-02
+Jornada: 10
+Wolverhampton Wanderers FC vs Crystal Palace FC
+Hora: 17:30
+Resultado: 2 - 2
+-------------
+Fecha: 2024-11-03
+Jornada: 10
+Tottenham Hotspur FC vs Aston Villa FC
+Hora: 14:00
+Resultado: 4 - 1
+-------------
+Fecha: 2024-11-03
+Jornada: 10
+Manchester United FC vs Chelsea FC
+Hora: 16:30
+Resultado: 1 - 1
+-------------
+Fecha: 2024-11-04
+Jornada: 10
+Fulham FC vs Brentford FC
+Hora: 20:00
+Resultado: 2 - 1
+-------------
